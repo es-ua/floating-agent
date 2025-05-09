@@ -1,10 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = "floating-agent:latest"
-        DOCKER_REGISTRY = "your-registry.example.com" // Change to your Docker registry if needed
-        REMOTE_HOST = "user@your-ubuntu-server"      // Change to your Ubuntu server SSH
-        REMOTE_PATH = "/opt/floating-agent"          // Change to your deploy path
+        DEPLOY_PATH = "/opt/floating-agent" // Путь для деплоя
     }
     stages {
         stage('Checkout') {
@@ -12,28 +9,23 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build Docker Image') {
+        stage('Build chatwidget Docker Image') {
             steps {
-                sh 'docker build -t $DOCKER_IMAGE .'
+                dir('chatwidget') {
+                    sh 'docker build -t chatwidget:latest .'
+                }
             }
         }
-        stage('Push Docker Image') {
-            when {
-                expression { env.DOCKER_REGISTRY != '' }
-            }
+        stage('Copy files to deploy path') {
             steps {
-                sh 'docker tag $DOCKER_IMAGE $DOCKER_REGISTRY/$DOCKER_IMAGE'
-                sh 'docker push $DOCKER_REGISTRY/$DOCKER_IMAGE'
+                sh 'mkdir -p $DEPLOY_PATH'
+                sh 'cp docker-compose.yml agent-config.json $DEPLOY_PATH/'
+                sh 'cp -r chatwidget $DEPLOY_PATH/'
             }
         }
-        stage('Deploy to Ubuntu Server') {
+        stage('Deploy chatwidget locally') {
             steps {
-                // Copy docker-compose.yml and agent-config.json to server
-                sh 'scp docker-compose.yml agent-config.json $REMOTE_HOST:$REMOTE_PATH/'
-                // Copy Dockerfile and scripts if needed
-                sh 'scp Dockerfile floating-agent.js floating-agent.min.js $REMOTE_HOST:$REMOTE_PATH/'
-                // Deploy via SSH
-                sh '''ssh $REMOTE_HOST "cd $REMOTE_PATH && docker compose pull || true && docker compose up -d --build"'''
+                sh '''cd $DEPLOY_PATH/chatwidget && docker stop chatwidget || true && docker rm chatwidget || true && docker build -t chatwidget:latest . && docker run -d --name chatwidget -p 3000:3000 chatwidget:latest'''
             }
         }
     }
