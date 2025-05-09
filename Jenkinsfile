@@ -9,7 +9,7 @@ pipeline {
         stage('Clean previous chatwidget containers') {
             steps {
                 dir('chatwidget') {
-                    sh '''docker compose down || true'''
+                    sh 'docker compose down || true'
                 }
             }
         }
