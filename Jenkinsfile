@@ -9,14 +9,14 @@ pipeline {
         stage('Clean previous chatwidget containers') {
             steps {
                 dir('chatwidget') {
-                    sh 'docker compose down || true'
+                    sh 'docker compose -f docker-compose.yml down || true'
                 }
             }
         }
         stage('Build and Deploy chatwidget via Docker Compose') {
             steps {
                 dir('chatwidget') {
-                    sh 'docker compose up -d --build'
+                    sh 'docker compose -f docker-compose.yml up -d --build'
                 }
             }
         }
