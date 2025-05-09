@@ -1,0 +1,12 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Preview floating-agent.js in browser",
+      "type": "shell",
+      "command": "echo 'Inject floating-agent.js into any webpage to preview.'",
+      "group": "build",
+      "problemMatcher": []
+    }
+  ]
+}

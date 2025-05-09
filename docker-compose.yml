@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  chatwidget:
+    build: ./chatwidget
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_IFRAME_URL_PROD=https://your-production-domain.com
+      - NEXT_PUBLIC_IFRAME_URL_DEV=http://localhost:3000
+    volumes:
+      - ./chatwidget:/app
+    command: npm run dev
+  floating-agent:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    command: serve . -l 8080
