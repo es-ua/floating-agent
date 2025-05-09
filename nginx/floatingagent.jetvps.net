@@ -4,7 +4,7 @@
 server {
     listen 80;
     server_name floatingagent.jetvps.net;
-    root /var/www/floating-agent;
+    root /home/workspace/floating-agent;
     index index.html;
 
     location / {
@@ -21,7 +21,7 @@ server {
 # chatwidget доступен по поддомену chatwidget.floatingagent.jetvps.net
 server {
     listen 80;
-    server_name chatwidget.floatingagent.jetvps.net;
+    server_name chatwidget.jetvps.net;
 
     location / {
         proxy_pass http://localhost:3000;
