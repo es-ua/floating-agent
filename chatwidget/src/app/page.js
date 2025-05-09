@@ -10,8 +10,11 @@ export default function Home() {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef(null);
 
-  // Read iframe URL from environment variable
-  const iframeUrl = process.env.NEXT_PUBLIC_IFRAME_URL || "https://example.com";
+  // Read iframe URL from environment variable (safe for SSR)
+  const [iframeUrl, setIframeUrl] = useState(null);
+  useEffect(() => {
+    setIframeUrl(process.env.NEXT_PUBLIC_IFRAME_URL);
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
