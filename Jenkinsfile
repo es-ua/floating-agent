@@ -6,16 +6,18 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build chatwidget Docker Image') {
+        stage('Clean previous chatwidget containers') {
             steps {
                 dir('chatwidget') {
-                    sh 'docker build -t chatwidget:latest .'
+                    sh '''docker compose down || true'''
                 }
             }
         }
-        stage('Deploy chatwidget locally') {
+        stage('Build and Deploy chatwidget via Docker Compose') {
             steps {
-                sh '''cd chatwidget && docker stop chatwidget || true && docker rm chatwidget || true && docker build -t chatwidget:latest . && docker run -d --name chatwidget -p 3000:3000 chatwidget:latest'''
+                dir('chatwidget') {
+                    sh 'docker compose up -d --build'
+                }
             }
         }
     }
