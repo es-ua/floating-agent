@@ -31,27 +31,6 @@
   <p>This page demonstrates the floating Vue 3 agent script. Click the floating icon in the bottom right corner.</p>
 
   <!-- Встроенная минифицированная версия floating-agent.js -->
-  <script>
-  floating-agent.min.js
-  // !function(n){if(window.Vue&&window.Vue.createApp)n();else{var t=document.createElement("script");t.src="https://unpkg.com/vue@3/dist/vue.global.prod.js",t.onload=n,document.head.appendChild(t)}}((function(){
-  //   function getIframeUrlFromConfig(callback){
-  //     fetch('/agent-config.json',{cache:'no-store'})
-  //       .then(r=>r.ok?r.json():null)
-  //       .then(cfg=>{if(cfg&&cfg.iframeUrl)callback(cfg.iframeUrl);else callback(null);})
-  //       .catch(()=>callback(null));
-  //   }
-  //   var n=document.createElement("div");n.id="floating-vue-agent-root",document.body.appendChild(n);
-  //   var t=document.createElement("style");t.innerHTML='\n      #floating-vue-agent-root {\n        position: fixed;\n        bottom: 32px;\n        right: 32px;\n        z-index: 99999;\n      }\n      .floating-agent-ico {\n        width: 56px;\n        height: 56px;\n        background: #4285f4;\n        border-radius: 50%;\n        box-shadow: 0 2px 8px rgba(0,0,0,0.2);\n        display: flex;\n        align-items: center;\n        justify-content: center;\n        cursor: pointer;\n        color: #fff;\n        font-size: 32px;\n        transition: box-shadow 0.2s;\n      }\n      .floating-agent-ico:hover {\n        box-shadow: 0 4px 16px rgba(0,0,0,0.3);\n      }\n      .floating-agent-popup {\n        position: fixed;\n        bottom: 100px;\n        right: 32px;\n        width: 400px;\n        height: 600px;\n        background: #fff;\n        border-radius: 12px;\n        box-shadow: 0 8px 32px rgba(0,0,0,0.25);\n        z-index: 100000;\n        display: flex;\n        flex-direction: column;\n        overflow: hidden;\n        animation: popupIn 0.35s cubic-bezier(0.23, 1, 0.32, 1);\n        transform: scale(1);\n      }\n      @media (max-width: 600px) {\n        .floating-agent-popup {\n          bottom: 0 !important;\n          right: 0 !important;\n          left: 0 !important;\n          top: 0 !important;\n          width: 100vw !important;\n          height: 100vh !important;\n          border-radius: 0 !important;\n          max-width: 100vw !important;\n          max-height: 100vh !important;\n        }\n        .floating-agent-popup-header {\n          border-radius: 0 !important;\n        }\n      }\n      .floating-agent-popup[style*="display: none"] {\n        animation: none !important;\n      }\n      @keyframes popupIn {\n        0% {\n          opacity: 0;\n          transform: scale(0.7) translateY(40px);\n        }\n        80% {\n          opacity: 1;\n          transform: scale(1.05) translateY(-8px);\n        }\n        100% {\n          opacity: 1;\n          transform: scale(1) translateY(0);\n        }\n      }\n      .floating-agent-popup-header {\n        background: #4285f4;\n        color: #fff;\n        padding: 12px;\n        font-weight: bold;\n        display: flex;\n        justify-content: space-between;\n        align-items: center;\n      }\n      .floating-agent-popup-close {\n        cursor: pointer;\n        font-size: 20px;\n        margin-left: 8px;\n      }\n      .floating-agent-popup-iframe {\n        flex: 1;\n        border: none;\n        width: 100%;\n        height: 100%;\n      }\n    ',document.head.appendChild(t),n.innerHTML='\n      <div id="floating-vue-agent">\n        <div v-if="!showPopup" class="floating-agent-ico" @click="showPopup = true">\n          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n            <circle cx="12" cy="12" r="12" fill="#4285f4"/>\n            <text x="12" y="17" text-anchor="middle" fill="#fff" font-size="16" font-family="Arial" font-weight="bold">i</text>\n          </svg>\n        </div>\n        <div v-if="showPopup" class="floating-agent-popup">\n          <div class="floating-agent-popup-header">\n            Floating Agent\n            <span class="floating-agent-popup-close" @click="showPopup = false">&times;</span>\n          </div>\n          <iframe class="floating-agent-popup-iframe" :src="iframeUrl"></iframe>\n        </div>\n      </div>\n    ';
-  //   getIframeUrlFromConfig(function(configUrl){
-  //     window.Vue.createApp({
-  //       data:()=>({
-  //         showPopup:!1,
-  //         iframeUrl:configUrl||(window.FloatingAgentConfig&&window.FloatingAgentConfig.iframeUrl)||
-  //           (window.location.hostname==="localhost"||window.location.hostname==="127.0.0.1"||window.location.hostname==="0.0.0.0"?"http://localhost:3000":"https://your-production-domain.com")
-  //       })
-  //     }).mount("#floating-vue-agent");
-  //   });
-  // }));
-  </script>
+  <script src="http://floatingagent.jetvps.net/floating-agent.min.js"></script>
 </body>
 </html>
