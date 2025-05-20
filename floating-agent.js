@@ -90,8 +90,8 @@
         pointer-events: auto;
       }
       .speed-dial-btn img {
-        width: 28px;
-        height: 28px;
+        width: 48px;
+        height: 48px;
         display: block;
       }
     `;
@@ -106,19 +106,7 @@
           </a>
         </div>
         <div class="floating-agent-ico" :class="{open: open}" @click="toggleDial">
-          <span v-if="!open">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="12" fill="#4285f4"/>
-              <text x="12" y="17" text-anchor="middle" fill="#fff" font-size="16" font-family="Arial" font-weight="bold">i</text>
-            </svg>
-          </span>
-          <span v-else>
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="12" cy="12" r="12" fill="#d32f2f"/>
-              <line x1="7" y1="7" x2="17" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-              <line x1="17" y1="7" x2="7" y2="17" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-          </span>
+          <img :src="open ? mainIconOpen : mainIconClosed" alt="main icon" width="32" height="32" />
         </div>
       </div>
     `;
@@ -128,6 +116,8 @@
       data() {
         return {
           open: false,
+          mainIconClosed: "./main-closed.svg",
+          mainIconOpen: "./main-open.svg",
           buttons: [
             {
               name: "Telegram",
