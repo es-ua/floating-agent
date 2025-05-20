@@ -42,9 +42,9 @@
       .floating-agent-ico {
         width: 56px;
         height: 56px;
-        background: #4285f4;
+        nn_background: #4285f4;
         border-radius: 50%;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        nn_box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -106,7 +106,7 @@
           </a>
         </div>
         <div class="floating-agent-ico" :class="{open: open}" @click="toggleDial">
-          <img :src="open ? mainIconOpen : mainIconClosed" alt="main icon" width="32" height="32" />
+          <img :src="open ? mainIconOpen : mainIconClosed" alt="main icon" width="56" height="56" />
         </div>
       </div>
     `;
@@ -116,27 +116,28 @@
       data() {
         return {
           open: false,
-          mainIconClosed: "./main-closed.svg",
+          // mainIconClosed: "./main-closed.svg",
+          mainIconClosed: "./dial_icon3.png",
           mainIconOpen: "./main-open.svg",
           buttons: [
             {
               name: "Telegram",
               url: "https://t.me/",
-              icon: "./telegram.svg",
+              icon: "./telegram.png",
               delay: "0.05s",
               idx: 0,
             },
             {
               name: "WhatsApp",
               url: "https://wa.me/",
-              icon: "./whatsapp.svg",
+              icon: "./whatsapp2.png",
               delay: "0.1s",
               idx: 1,
             },
             {
               name: "Messenger",
               url: "https://m.me/",
-              icon: "./messenger.svg",
+              icon: "./messenger.png",
               delay: "0.15s",
               idx: 2,
             },
