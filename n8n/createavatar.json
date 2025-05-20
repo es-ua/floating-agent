@@ -1,0 +1,77 @@
+{
+  "name": "Create Akool Avatar",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "create-akool-avatar"
+      },
+      "id": "Webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "requestMethod": "POST",
+        "url": "https://api.akool.com/v1/avatar/create",
+        "jsonParameters": true,
+        "options": {},
+        "bodyParametersJson": "{\"name\":\"user-{{$json[\"sessionId\"]}}\",\"source_url\":\"https://example.com/default-avatar.jpg\"}",
+        "headers": [
+          {
+            "name": "x-api-key",
+            "value": "{{ $env.AKOOL_API_KEY }}"
+          },
+          {
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+      },
+      "id": "HTTP Request",
+      "name": "Create Avatar",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "options": {},
+        "responseData": {
+          "avatar_id": "{{$json[\"result\"][\"avatar_id\"]}}"
+        }
+      },
+      "id": "Respond to Webhook",
+      "name": "Respond",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [650, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Create Avatar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Avatar": {
+      "main": [
+        [
+          {
+            "node": "Respond",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

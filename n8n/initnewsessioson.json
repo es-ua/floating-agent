@@ -1,0 +1,43 @@
+{
+  "name": "Initialize Akool Session",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "init-akool-session"
+      },
+      "id": "Webhook",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "options": {},
+        "responseData": {
+          "sessionId": "{{$json[\"sessionId\"] || $node[\"Webhook\"].json[\"body\"][\"sessionId\"] || $uuid()}}",
+          "avatar_id": "PASTE_YOUR_STATIC_AVATAR_ID_HERE"
+        }
+      },
+      "id": "Respond",
+      "name": "Respond to Client",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [450, 300]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Respond to Client",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}
