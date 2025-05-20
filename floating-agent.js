@@ -57,7 +57,7 @@
       }
       .floating-agent-ico.open {
         background: #d32f2f;
-        transform: rotate(45deg);
+        transform: rotate(90deg);
       }
       .floating-agent-speed-dial {
         position: absolute;
