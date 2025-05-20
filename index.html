@@ -10,7 +10,7 @@
       min-height: 100vh;
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
+      background: #f0f4f8;
     }
     h1 {
       margin: 40px 0 20px 0;
@@ -21,16 +21,12 @@
       color: #555;
     }
   </style>
-  <!-- Конфиг window.FloatingAgentConfig не содержит дефолтных урлов -->
-  <script>
-    // window.FloatingAgentConfig = { iframeUrl: ... };
-  </script>
 </head>
 <body>
-  <h1>Floating Agent Demo</h1>
-  <p>This page demonstrates the floating Vue 3 agent script. Click the floating icon in the bottom right corner.</p>
+  <h1>Floating Agent Example</h1>
+  <p>This page demonstrates the floating Vue 3 speed dial widget. Click the floating icon in the bottom right corner to open the menu.</p>
 
-  <!-- Встроенная минифицированная версия floating-agent.js -->
-  <script src="http://floatingagent.jetvps.net/floating-agent.min.js"></script>
+  <!-- Подключение минифицированного floating-agent.min.js как внешнего файла -->
+  <script src="./floating-agent.min.js"></script>
 </body>
 </html>

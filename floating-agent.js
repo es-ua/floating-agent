@@ -89,9 +89,10 @@
         transform: translateY(0) scale(1);
         pointer-events: auto;
       }
-      .speed-dial-btn svg {
+      .speed-dial-btn img {
         width: 28px;
         height: 28px;
+        display: block;
       }
     `;
     document.head.appendChild(style);
@@ -101,7 +102,7 @@
       <div id="floating-vue-agent">
         <div class="floating-agent-speed-dial">
           <a v-for="btn in buttons" :key="btn.name" :href="btn.url" target="_blank" rel="noopener" class="speed-dial-btn" :class="{show: open}" :style="{transitionDelay: open ? btn.delay : (buttons.length-btn.idx)*0.05+'s'}" @click.stop>
-            <span v-html="btn.icon"></span>
+            <img :src="btn.icon" :alt="btn.name" />
           </a>
         </div>
         <div class="floating-agent-ico" :class="{open: open}" @click="toggleDial">
@@ -131,21 +132,21 @@
             {
               name: "Telegram",
               url: "https://t.me/",
-              icon: `<svg viewBox='0 0 24 24'><circle fill='#229ED9' cx='12' cy='12' r='12'/><path d='M17.5 7.5L6.5 11.5c-.5.2-.5.5 0 .7l2.7.8 1 3.1c.1.3.2.3.4.1l1.4-1.4 2.9 2.1c.3.2.5.1.6-.2l2.1-8.2c.1-.4-.1-.6-.5-.5z' fill='#fff'/></svg>`,
+              icon: "./telegram.svg",
               delay: "0.05s",
               idx: 0,
             },
             {
               name: "WhatsApp",
               url: "https://wa.me/",
-              icon: `<svg viewBox='0 0 24 24'><circle fill='#25D366' cx='12' cy='12' r='12'/><path d='M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.472-.148-.67.15-.198.297-.767.967-.94 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.447-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.571-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.099 3.205 5.077 4.369.71.244 1.263.389 1.695.497.712.181 1.36.156 1.872.095.571-.067 1.758-.719 2.007-1.413.248-.694.248-1.288.173-1.413-.074-.124-.272-.198-.57-.347z' fill='#fff'/></svg>`,
+              icon: "./whatsapp.svg",
               delay: "0.1s",
               idx: 1,
             },
             {
               name: "Messenger",
               url: "https://m.me/",
-              icon: `<svg viewBox='0 0 24 24'><circle fill='#0084FF' cx='12' cy='12' r='12'/><path d='M12 4C7.03 4 3 7.58 3 12c0 2.02.89 3.84 2.37 5.19.12.11.19.27.17.43l-.23 1.62c-.04.28.19.53.48.53.1 0 .19-.03.27-.08l1.98-1.23c.13-.08.29-.13.44-.13.32.03.65.05.98.05 4.97 0 9-3.58 9-8s-4.03-8-9-8zm1.13 10.47l-1.7-1.81-3.13 1.81 4.13-4.47 1.7 1.81 3.13-1.81-4.13 4.47z' fill='#fff'/></svg>`,
+              icon: "./messenger.svg",
               delay: "0.15s",
               idx: 2,
             },
